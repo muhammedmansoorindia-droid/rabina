@@ -8,7 +8,7 @@ import '../components/nav-fix.css'
 
 const industries = [
   ['food', 'Food', 'Taste, made visible.'], ['fashion', 'Fashion', 'Culture in motion.'], ['real-estate', 'Real Estate', 'Spaces with gravity.'], ['fitness', 'Fitness', 'Energy that moves.'],
-  ['dental', 'Dental', 'Confidence, considered.'], ['hotel', 'Hotel', 'Stay a little longer.'], ['saas', 'SaaS', 'Complexity, clarified.'], ['automotive', 'Automotive', 'Move with intent.'],
+  ['dental', 'Health Care', 'Care, made accessible.'], ['hotel', 'Hotel', 'Stay a little longer.'], ['saas', 'SaaS', 'Complexity, clarified.'], ['automotive', 'Automotive', 'Move with intent.'],
 ]
 const services = [['01', 'Digital Marketing', 'We build growth systems that make your next move feel obvious.'], ['02', 'Google & Meta Ads', 'Paid campaigns with a point of view, measured from first impression to action.'], ['03', 'SEO', 'Search foundations that make the right people find you at the right moment.'], ['04', 'Web Development', 'Websites with a pulse, a point of view, and a reason to return.'], ['05', 'AI Integration', 'Practical intelligence woven into the places your team already works.'], ['06', 'Automation', 'Small systems that remove friction and give your team room to think.']]
 const faqs = [['What is Rabina?', 'Rabina is a digital growth studio building distinctive web, brand, and AI experiences for companies with ambition.'], ['Do you work across industries?', 'Yes. Our approach is adaptable, but never generic. Explore the industry demos to see how the same thinking becomes a different world.'], ['Can we work together on a specific project?', 'Yes. From a focused web build to an ongoing growth partnership, we shape the engagement around the challenge.']]

@@ -1,0 +1,1155 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap");
+
+/* =========================================================
+   RABINA / FASHION — editorial demo
+   Isolated stylesheet. Scoped under .fashion-demo so it
+   never leaks into other demos.
+========================================================= */
+
+.fashion-demo {
+  --ink: #0c0b0a;
+  --char: #17150f;
+  --paper: #f3f0e9;
+  --bone: #e7e1d5;
+  --beige: #cbb99e;
+  --accent: #b48a5f;
+  --muted: #8c877d;
+
+  position: relative;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "DM Sans", sans-serif;
+  /* clip (not hidden) so position: sticky inside is not broken */
+  overflow-x: clip;
+  min-height: 100vh;
+}
+
+.fashion-demo * {
+  box-sizing: border-box;
+}
+
+.fashion-demo button {
+  font: inherit;
+  cursor: pointer;
+}
+
+.fashion-demo img {
+  display: block;
+  max-width: 100%;
+}
+
+/* Film grain overlay */
+.fashion-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.fashion-kicker {
+  margin: 0;
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.fashion-nav {
+  position: fixed;
+  z-index: 40;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 84px;
+  padding: 0 4vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #f3f0e9;
+  transition: background 0.5s ease, color 0.5s ease, backdrop-filter 0.5s ease;
+}
+
+.fashion-nav--solid {
+  background: rgba(12, 11, 10, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.fashion-brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  border: 0;
+  background: none;
+  color: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+}
+
+.fashion-brand small {
+  opacity: 0.55;
+  font-weight: 400;
+}
+
+.fashion-brand-mark {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-size: 19px;
+}
+
+.fashion-nav-links {
+  display: flex;
+  gap: 34px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.fashion-nav-links button {
+  border: 0;
+  background: none;
+  color: inherit;
+  opacity: 0.72;
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.fashion-nav-links button:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+.fashion-nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid rgba(243, 240, 233, 0.4);
+  background: none;
+  color: inherit;
+  padding: 12px 18px;
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.fashion-nav-cta:hover {
+  background: #f3f0e9;
+  color: var(--ink);
+  border-color: #f3f0e9;
+}
+
+.fashion-nav-right {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.fashion-nav-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: inherit;
+  text-decoration: none;
+  opacity: 0.7;
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  transition: opacity 0.25s ease;
+}
+
+.fashion-nav-back:hover {
+  opacity: 1;
+}
+
+/* =========================
+   HERO
+========================= */
+
+/* Tall wrap lets the hero pin (position: sticky) while the next
+   section scrolls up and overlaps it — a real section handoff. */
+.fashion-hero-wrap {
+  position: relative;
+  z-index: 1;
+  height: 165vh;
+}
+
+.fashion-hero {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  min-height: 680px;
+  overflow: hidden;
+  background: var(--ink);
+  color: #f3f0e9;
+}
+
+.fashion-hero-media {
+  position: absolute;
+  inset: -6%;
+  will-change: transform;
+}
+
+.fashion-hero-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  filter: saturate(0.82) contrast(1.02);
+}
+
+.fashion-hero-veil {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(12, 11, 10, 0.86) 0%, rgba(12, 11, 10, 0.28) 55%, rgba(12, 11, 10, 0.12) 100%),
+    linear-gradient(0deg, rgba(12, 11, 10, 0.85) 0%, transparent 55%);
+}
+
+.fashion-hero-inner {
+  position: absolute;
+  z-index: 3;
+  left: 7vw;
+  bottom: 15vh;
+  max-width: 780px;
+  will-change: transform, opacity;
+}
+
+.fashion-hero-inner .fashion-kicker {
+  color: var(--beige);
+  margin-bottom: 26px;
+}
+
+.fashion-hero-inner h1 {
+  margin: 0;
+  font-size: clamp(64px, 9.5vw, 150px);
+  line-height: 0.86;
+  font-weight: 400;
+  letter-spacing: -0.05em;
+  display: flex;
+  flex-direction: column;
+}
+
+.fashion-line {
+  display: block;
+  will-change: transform, opacity;
+}
+
+.fashion-line--accent {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--beige);
+}
+
+.fashion-hero-text {
+  max-width: 420px;
+  margin: 38px 0 34px;
+  color: rgba(243, 240, 233, 0.68);
+  font-size: 15px;
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+.fashion-hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+}
+
+.fashion-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  border: 0;
+  background: none;
+  text-decoration: none;
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+}
+
+.fashion-btn--solid {
+  background: var(--paper);
+  color: var(--ink);
+  padding: 16px 22px;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), background 0.3s ease;
+}
+
+.fashion-btn--solid:hover {
+  transform: translateY(-3px);
+  background: #fff;
+}
+
+.fashion-btn--line {
+  color: inherit;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(243, 240, 233, 0.35);
+  transition: border-color 0.3s ease;
+}
+
+.fashion-btn--line:hover {
+  border-color: currentColor;
+}
+
+.fashion-hero-meta {
+  position: absolute;
+  z-index: 3;
+  right: 4vw;
+  bottom: 42px;
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: rgba(243, 240, 233, 0.6);
+}
+
+.fashion-hero-scroll {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.fashion-hero-scroll i {
+  display: block;
+  width: 46px;
+  height: 1px;
+  background: currentColor;
+}
+
+/* =========================
+   INTRO — overlaps hero
+========================= */
+
+.fashion-intro {
+  position: relative;
+  z-index: 5;
+  margin-top: -13vh;
+  padding: 0 6vw;
+}
+
+.fashion-intro-card {
+  background: var(--paper);
+  padding: 8vw 6vw 7vw;
+  box-shadow: 0 -30px 60px rgba(0, 0, 0, 0.18);
+}
+
+.fashion-intro-head {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 5vw;
+  align-items: end;
+  margin-bottom: 5vw;
+}
+
+.fashion-intro-head h2 {
+  margin: 0;
+  font-size: clamp(52px, 6vw, 104px);
+  line-height: 0.9;
+  font-weight: 400;
+  letter-spacing: -0.05em;
+}
+
+.fashion-intro-head h2 em,
+.fashion-section-head h2 em,
+.fashion-editorial-copy h2 em,
+.fashion-story-copy h2 em,
+.fashion-finale-inner h2 em {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent);
+}
+
+.fashion-intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6vw;
+  align-items: center;
+}
+
+.fashion-intro-grid > div > p {
+  max-width: 440px;
+  color: #4d4a43;
+  font-size: 16px;
+  line-height: 1.75;
+  font-weight: 300;
+}
+
+.fashion-intro-note {
+  margin-top: 26px !important;
+  color: var(--muted) !important;
+  font-family: "DM Mono", monospace;
+  font-size: 11px !important;
+  letter-spacing: 0.06em;
+}
+
+.fashion-reveal {
+  overflow: hidden;
+  will-change: clip-path;
+}
+
+.fashion-reveal img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.fashion-intro-grid .fashion-reveal {
+  height: 62vh;
+  min-height: 420px;
+}
+
+/* Overscan: CineImage inner images drift vertically, so give them
+   headroom so parallax never reveals a gap at the edges. */
+.fashion-intro-grid .fashion-reveal,
+.fashion-story-media .fashion-reveal {
+  position: relative;
+}
+
+.fashion-intro-grid .fashion-reveal img,
+.fashion-story-media .fashion-reveal img {
+  position: absolute;
+  inset: -12% 0;
+  height: 124%;
+}
+
+/* =========================
+   SECTION HEAD (shared)
+========================= */
+
+.fashion-section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 4vw;
+  margin-bottom: 5vw;
+}
+
+.fashion-section-head h2 {
+  margin: 22px 0 0;
+  font-size: clamp(52px, 6vw, 104px);
+  line-height: 0.9;
+  font-weight: 400;
+  letter-spacing: -0.05em;
+}
+
+.fashion-section-count {
+  font-family: "DM Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* =========================
+   COLLECTION — asymmetric
+========================= */
+
+.fashion-collection {
+  position: relative;
+  padding: 16vh 6vw 12vh;
+  background: var(--paper);
+}
+
+.fashion-look-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 4vw 2vw;
+  align-items: start;
+}
+
+.fashion-look {
+  will-change: transform;
+}
+
+.fashion-look-image {
+  aspect-ratio: 3 / 4;
+}
+
+.fashion-look-image img {
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.fashion-look:hover .fashion-look-image img {
+  transform: scale(1.04);
+}
+
+.fashion-look-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(12, 11, 10, 0.16);
+}
+
+.fashion-look-meta > span {
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+  color: var(--muted);
+}
+
+.fashion-look-meta div {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.fashion-look-meta strong {
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.fashion-look-meta small {
+  margin-top: 3px;
+  font-family: "DM Mono", monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.fashion-look-meta svg {
+  color: var(--accent);
+  transition: transform 0.3s ease;
+}
+
+.fashion-look:hover .fashion-look-meta svg {
+  transform: translate(3px, -3px);
+}
+
+/* Asymmetric placement + varied sizes */
+.fashion-look--a {
+  grid-column: 1 / span 5;
+}
+
+.fashion-look--b {
+  grid-column: 8 / span 4;
+  margin-top: 16vh;
+}
+
+.fashion-look--c {
+  grid-column: 2 / span 4;
+  margin-top: 4vh;
+}
+
+.fashion-look--d {
+  grid-column: 7 / span 6;
+  margin-top: 10vh;
+}
+
+.fashion-look--d .fashion-look-image {
+  aspect-ratio: 16 / 11;
+}
+
+.fashion-look--e {
+  grid-column: 4 / span 5;
+  margin-top: 8vh;
+}
+
+/* =========================
+   LARGE EDITORIAL IMAGE
+========================= */
+
+.fashion-editorial {
+  position: relative;
+  background: var(--ink);
+  color: #f3f0e9;
+  padding: 14vh 0 0;
+}
+
+.fashion-editorial-inner {
+  position: relative;
+}
+
+.fashion-editorial-media {
+  position: relative;
+  height: 92vh;
+  min-height: 560px;
+  overflow: hidden;
+  will-change: clip-path;
+}
+
+.fashion-editorial-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 32%;
+  filter: saturate(0.8);
+}
+
+.fashion-editorial-copy {
+  position: absolute;
+  z-index: 3;
+  left: 6vw;
+  bottom: 8vh;
+  max-width: 560px;
+  will-change: transform;
+}
+
+.fashion-editorial-copy .fashion-kicker {
+  color: var(--beige);
+}
+
+.fashion-editorial-copy h2 {
+  margin: 22px 0 0;
+  font-size: clamp(56px, 8vw, 140px);
+  line-height: 0.86;
+  font-weight: 400;
+  letter-spacing: -0.055em;
+}
+
+.fashion-editorial-copy h2 em {
+  color: var(--beige);
+}
+
+.fashion-editorial-note {
+  margin: 26px 0 0;
+  font-family: "DM Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: rgba(243, 240, 233, 0.6);
+}
+
+.fashion-editorial-tag {
+  position: absolute;
+  z-index: 3;
+  right: 6vw;
+  top: 8vh;
+  font-family: "DM Mono", monospace;
+  font-size: clamp(40px, 6vw, 96px);
+  font-weight: 500;
+  color: rgba(243, 240, 233, 0.22);
+  letter-spacing: 0.02em;
+  will-change: transform;
+}
+
+/* =========================
+   STORY — light returns
+========================= */
+
+.fashion-story {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 7vw;
+  align-items: center;
+  padding: 15vh 6vw;
+  background: var(--paper);
+}
+
+.fashion-story-media {
+  position: relative;
+}
+
+.fashion-story-media .fashion-reveal {
+  height: 78vh;
+  min-height: 460px;
+}
+
+.fashion-story-badge {
+  position: absolute;
+  right: -18px;
+  bottom: -18px;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 14px 20px;
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  will-change: transform;
+}
+
+.fashion-story-copy {
+  max-width: 560px;
+}
+
+.fashion-story-copy h2 {
+  margin: 22px 0 30px;
+  font-size: clamp(50px, 5.5vw, 96px);
+  line-height: 0.9;
+  font-weight: 400;
+  letter-spacing: -0.05em;
+}
+
+.fashion-story-copy > div > p {
+  max-width: 430px;
+  color: #4d4a43;
+  font-size: 16px;
+  line-height: 1.75;
+  font-weight: 300;
+}
+
+.fashion-story-stats {
+  display: flex;
+  gap: 46px;
+  margin-top: 46px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(12, 11, 10, 0.16);
+}
+
+.fashion-story-stats > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.fashion-story-stats strong {
+  font-family: "Playfair Display", serif;
+  font-size: 44px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.fashion-story-stats small {
+  margin-top: 10px;
+  font-family: "DM Mono", monospace;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+}
+
+/* =========================
+   LOOKBOOK
+========================= */
+
+.fashion-lookbook {
+  position: relative;
+  padding: 4vh 6vw 16vh;
+  background: var(--paper);
+}
+
+.fashion-card-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 3vw;
+  align-items: start;
+}
+
+.fashion-card {
+  grid-column: span 3;
+}
+
+.fashion-card--tall {
+  margin-top: 0;
+}
+
+.fashion-card--short {
+  margin-top: 9vh;
+}
+
+.fashion-card--mid {
+  margin-top: 4vh;
+}
+
+.fashion-card-image {
+  position: relative;
+  overflow: hidden;
+  background: var(--bone);
+}
+
+.fashion-card--tall .fashion-card-image {
+  aspect-ratio: 3 / 4.6;
+}
+
+.fashion-card--short .fashion-card-image {
+  aspect-ratio: 3 / 3.4;
+}
+
+.fashion-card--mid .fashion-card-image {
+  aspect-ratio: 3 / 4;
+}
+
+.fashion-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.85);
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Parallax layer sits slightly taller than the frame so
+   vertical drift never reveals a gap at the edges. */
+.fashion-card-parallax {
+  position: absolute;
+  inset: -40px 0;
+  will-change: transform;
+}
+
+.fashion-card:hover .fashion-card-image img {
+  transform: scale(1.05);
+}
+
+.fashion-card-open {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  background: var(--paper);
+  color: var(--ink);
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.fashion-card:hover .fashion-card-open {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fashion-card-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 16px;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.fashion-card:hover .fashion-card-meta {
+  transform: translateY(-4px);
+}
+
+.fashion-card-meta strong {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.fashion-card-meta small {
+  font-family: "DM Mono", monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.fashion-card:hover .fashion-card-meta small {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========================
+   FINAL CTA
+========================= */
+
+.fashion-finale {
+  position: relative;
+  overflow: hidden;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 20vh 6vw 16vh;
+}
+
+.fashion-finale-band {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(120% 80% at 80% 0%, rgba(180, 138, 95, 0.22), transparent 60%),
+    radial-gradient(90% 70% at 0% 100%, rgba(203, 185, 158, 0.12), transparent 60%);
+  pointer-events: none;
+}
+
+.fashion-finale-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1180px;
+}
+
+.fashion-finale-inner .fashion-kicker {
+  color: var(--beige);
+}
+
+.fashion-finale-inner h2 {
+  margin: 26px 0 60px;
+  font-size: clamp(56px, 9vw, 150px);
+  line-height: 0.86;
+  font-weight: 400;
+  letter-spacing: -0.055em;
+}
+
+.fashion-finale-inner h2 em {
+  color: var(--beige);
+}
+
+.fashion-finale-foot {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 5vw;
+  padding-top: 44px;
+  border-top: 1px solid rgba(243, 240, 233, 0.16);
+}
+
+.fashion-finale-foot p {
+  max-width: 420px;
+  color: rgba(243, 240, 233, 0.62);
+  font-size: 15px;
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+.fashion-finale .fashion-btn--solid {
+  background: var(--beige);
+  color: var(--ink);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.fashion-footer {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 20px;
+  min-height: 120px;
+  padding: 34px 6vw;
+  background: #080807;
+  color: rgba(243, 240, 233, 0.55);
+  font-family: "DM Mono", monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+}
+
+.fashion-footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #f3f0e9;
+}
+
+.fashion-footer-brand strong {
+  font-size: 12px;
+  letter-spacing: 0.16em;
+}
+
+.fashion-footer-brand small {
+  opacity: 0.5;
+}
+
+.fashion-footer-links {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.fashion-footer-links a,
+.fashion-footer-links button {
+  color: inherit;
+  text-decoration: none;
+  background: none;
+  border: 0;
+  font: inherit;
+  letter-spacing: inherit;
+  transition: color 0.25s ease;
+}
+
+.fashion-footer-links a:hover,
+.fashion-footer-links button:hover {
+  color: #f3f0e9;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1200px) {
+  .fashion-look--a {
+    grid-column: 1 / span 6;
+  }
+
+  .fashion-look--b {
+    grid-column: 8 / span 5;
+  }
+
+  .fashion-look--c {
+    grid-column: 1 / span 5;
+  }
+
+  .fashion-look--d {
+    grid-column: 7 / span 6;
+  }
+
+  .fashion-look--e {
+    grid-column: 3 / span 7;
+  }
+}
+
+@media (max-width: 900px) {
+  /* Simplify: no pinning / overlap on small screens. */
+  .fashion-hero-wrap {
+    height: auto;
+  }
+
+  .fashion-hero {
+    position: relative;
+  }
+
+  .fashion-nav-links {
+    display: none;
+  }
+
+  .fashion-nav-cta {
+    display: none;
+  }
+
+  .fashion-intro-head,
+  .fashion-intro-grid,
+  .fashion-story {
+    grid-template-columns: 1fr;
+    gap: 6vh;
+  }
+
+  .fashion-intro {
+    margin-top: -6vh;
+  }
+
+  .fashion-look-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6vw 4vw;
+  }
+
+  .fashion-look--a,
+  .fashion-look--b,
+  .fashion-look--c,
+  .fashion-look--d,
+  .fashion-look--e {
+    grid-column: auto;
+    margin-top: 0;
+  }
+
+  .fashion-look--d .fashion-look-image {
+    aspect-ratio: 3 / 4;
+  }
+
+  .fashion-card-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5vw;
+  }
+
+  .fashion-card,
+  .fashion-card--tall,
+  .fashion-card--short,
+  .fashion-card--mid {
+    grid-column: auto;
+    margin-top: 0;
+  }
+
+  .fashion-editorial-copy {
+    left: 6vw;
+    right: 6vw;
+    bottom: 6vh;
+  }
+
+  .fashion-story-badge {
+    right: 12px;
+    bottom: -14px;
+  }
+
+  .fashion-footer {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 16px;
+  }
+
+  .fashion-footer-brand {
+    justify-content: center;
+  }
+
+  .fashion-footer-links {
+    justify-self: center;
+  }
+}
+
+@media (max-width: 560px) {
+  .fashion-hero-inner {
+    left: 6vw;
+    right: 6vw;
+    bottom: 12vh;
+  }
+
+  .fashion-hero-inner h1 {
+    font-size: 58px;
+  }
+
+  .fashion-hero-actions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+
+  .fashion-hero-meta {
+    left: 6vw;
+    right: 6vw;
+    justify-content: space-between;
+  }
+
+  .fashion-look-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .fashion-card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .fashion-finale-foot {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+  }
+
+  .fashion-story-stats {
+    gap: 30px;
+  }
+}
+
+/* =========================
+   REDUCED MOTION
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .fashion-demo *,
+  .fashion-demo *::before,
+  .fashion-demo *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .fashion-hero-media,
+  .fashion-hero-inner,
+  .fashion-look,
+  .fashion-editorial-copy,
+  .fashion-editorial-tag,
+  .fashion-story-badge {
+    transform: none !important;
+  }
+}
